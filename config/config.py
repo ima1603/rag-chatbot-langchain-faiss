@@ -1,4 +1,4 @@
-import os
+import os 
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -8,7 +8,7 @@ if EMBEDDING_MODEL_NAME is None:
     raise ValueError("EMBEDDING_MODEL_NAME is not set. Check your .env file.")
 
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
-GEMINI_MODEL_NAME = "gemini-1.5-flash-latest"  # or "gemini-1.5-pro"
+GEMINI_MODEL_NAME = "gemini-3.1-flash-lite"  # or "gemini-1.5-pro"
 
 if not GEMINI_API_KEY:
     raise ValueError("Missing GEMINI_API_KEY. Set it as an environment variable.")

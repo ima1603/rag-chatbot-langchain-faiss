@@ -1,6 +1,5 @@
 import requests
-from config.config import GEMINI_API_KEY
-
+from config.config import GEMINI_API_KEY, GEMINI_MODEL_NAME # Import the model name from config
 from langchain_groq import ChatGroq
 
 def get_gemini_flash_model():
@@ -9,7 +8,9 @@ def get_gemini_flash_model():
         raise ValueError("GEMINI_API_KEY is missing. Please set it in your environment or config.py.")
 
     def chat(prompt: str) -> str:
-        url = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent"
+        # DYNAMICALLY USE GEMINI_MODEL_NAME HERE:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL_NAME}:generateContent"
+        
         headers = {
             "Content-Type": "application/json",
             "X-goog-api-key": GEMINI_API_KEY
@@ -32,4 +33,3 @@ def get_gemini_flash_model():
             raise RuntimeError(f"Unexpected Gemini response format: {data}")
 
     return chat
-
